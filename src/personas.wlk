@@ -6,30 +6,28 @@ class Persona {
 	var property respetaCuarentena = false
 	var property diaInfeccion = 0
 	var estaInfectada = false
+	var tieneSintomas = false
 	
 	method estaInfectada(){
-		/* 
-		//si la probalidad es mayor a 2	SI
-		//si la prob es menor 2
-			NO
-		*/
-		return false
+		if (estaInfectada and simulacion.diaActual() > diaInfeccion+20 )
+		{ estaInfectada = false	}
+		return estaInfectada
 	}
 	
 	method infectarse() {
 		estaInfectada = true
 		diaInfeccion = simulacion.diaActual()
-	
-		// implementar 
 	}
-
 	
 	method presentaSintomas(){
-		var estado = false
-		if (self.estaInfectada()){
-			estado = true //VER QUE ONDA
+		if (self.estaInfectada() and not tieneSintomas) {
+			if (simulacion.tomarChance(simulacion.chanceDePresentarSintomas())) {
+				tieneSintomas = true }
 		}
-		return estado
+		else if (not self.estaInfectada()){
+			tieneSintomas = false
+		}
+		return tieneSintomas
 	}
 }
 

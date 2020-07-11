@@ -20,7 +20,8 @@ object simulacion {
 	 * este sirve para generar un azar
 	 * p.ej. si quiero que algo pase con 30% de probabilidad pongo
 	 * if (simulacion.tomarChance(30)) { ... } 
-	 */ 	
+	 */
+	
 	method tomarChance(porcentaje) = 0.randomUpTo(100) < porcentaje
 
 	method agregarManzana(manzana) { manzanas.add(manzana) }
@@ -30,7 +31,6 @@ object simulacion {
 			self.chanceDeContagioConCuarentena() 
 			else 
 			self.chanceDeContagioSinCuarentena()
-			
 		return (1..cantidadContagiadores).any({n => self.tomarChance(chanceDeContagio) })	
 	}
 

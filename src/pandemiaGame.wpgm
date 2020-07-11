@@ -2,14 +2,14 @@ import wollok.game.*
 import simulacion.*
 
 object pandemiaGameConfig {
-	method height() = 4
-	method width() = 6
+	method height() = 1
+	method width() = 1
 	method title() = "Simuléichon"
 	
 	method configureGame() {
 		self.configureGameParameters()
 		self.agregarManzanas()
-		keyboard.num1().onPressDo { game.say(game.origin(), simulacion.estadoGeneral() ) }
+		keyboard.num1().onPressDo { console.println(simulacion.estadoGeneral())  }
 		keyboard.x().onPressDo {simulacion.sumarInfectade() }
 		keyboard.d().onPressDo {simulacion.pasarDia()}
 		
