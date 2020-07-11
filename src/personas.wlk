@@ -10,8 +10,10 @@ class Persona {
 		// implementar 
 	}
 	
-	// method diaInfeccion()
-	// method presentaSintomas()
-	// method respetaCuarentena()
+	method diaInfeccion() {}
+	
+	method presentaSintomas()
+	
+	method respetaCuarentena()
 }
 

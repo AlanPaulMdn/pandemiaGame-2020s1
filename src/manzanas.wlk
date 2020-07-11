@@ -39,22 +39,24 @@ class Manzana {
 		personas.add(persona)
 	}
 	
-	method cantidadContagiadores() {
-		return 0
-		// reemplazar por la cantidad de personas infectadas que no estan aisladas
-	}
+	method cantidadContagiadores()= 
+		self.infectades().difference(self.aisladas()).size()
+	
+	method aisladas()=
+		personas.filter({pers => pers.estaAislada()}).asSet()
 	
 	method noInfectades() {
-		return personas.filter({ pers => not pers.estaInfectada() })
+		return personas.filter({ pers => not pers.estaInfectada() }).asSet()
 	} 	
 	
 	method infectades() {
-		return personas.asSet().difference(self.noInfectades().asSet())
+		return personas.asSet().difference(self.noInfectades())
 	}
 	
 	method conSintomas()=
 		personas.filter({ pers => pers.presentaSintomas() })
-		
+
+
 	method simulacionContagiosDiarios() { 
 		const cantidadContagiadores = self.cantidadContagiadores()
 		if (cantidadContagiadores > 0) {
@@ -66,7 +68,7 @@ class Manzana {
 		}
 	}
 	
-	method transladoDeUnHabitante() {
+	method transladoDeUnHabitante() { //chequearlo
 		const quienesSePuedenMudar = personas.filter({ pers => not pers.estaAislada() })
 		if (quienesSePuedenMudar.size() > 2) {
 			const viajero = quienesSePuedenMudar.anyOne()

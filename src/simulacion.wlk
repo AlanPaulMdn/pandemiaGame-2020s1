@@ -1,14 +1,18 @@
 import personas.*
 import manzanas.*
+import wollok.game.*
 
 object simulacion {
 	var property diaActual = 0
 	const property manzanas = []
-	
+
 	// parametros del juego
 	const property chanceDePresentarSintomas = 30
+	
 	const property chanceDeContagioSinCuarentena = 25
 	const property chanceDeContagioConCuarentena = 2
+	
+	
 	const property personasPorManzana = 10
 	const property duracionInfeccion = 20
 
@@ -32,7 +36,11 @@ object simulacion {
 
 	method crearManzana() {
 		const nuevaManzana = new Manzana()
+		/*(1..self.personasPorManzana()).forEach({
+			nuevaManzana.ingresarPersona(new Persona()) // PONER PARAMETROS
+		})
 		// agregar la cantidad de personas segun self.personasPorManzana()
+		*/
 		return nuevaManzana
 	}
 	
@@ -40,7 +48,7 @@ object simulacion {
 	
 	method pasarDia(){
 		diaActual += 1
-		// movimiento, contagio y curacion
+		manzanas.apply({m=> m.pasarUnDia()})
 		console.prinln("terminó el día") 
 	}
 	method totalPersonas()=
