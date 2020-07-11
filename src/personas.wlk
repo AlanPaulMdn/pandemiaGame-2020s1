@@ -1,19 +1,35 @@
+import simulacion.*
+
 class Persona {
 	var property estaAislada = false
 	
-	method estaInfectada() {
+	var property respetaCuarentena = false
+	var property diaInfeccion = 0
+	var estaInfectada = false
+	
+	method estaInfectada(){
+		/* 
+		//si la probalidad es mayor a 2	SI
+		//si la prob es menor 2
+			NO
+		*/
 		return false
-		// implementar
 	}
 	
 	method infectarse() {
+		estaInfectada = true
+		diaInfeccion = simulacion.diaActual()
+	
 		// implementar 
 	}
+
 	
-	method diaInfeccion() {}
-	
-	method presentaSintomas()
-	
-	method respetaCuarentena()
+	method presentaSintomas(){
+		var estado = false
+		if (self.estaInfectada()){
+			estado = true //VER QUE ONDA
+		}
+		return estado
+	}
 }
 
