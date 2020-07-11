@@ -2,7 +2,7 @@ import personas.*
 import simulacion.*
 import wollok.game.*
 
-// ACA ESTUVO FLOR
+// ACA ESTUVO ALAN
 
 class Manzana {
 	const property personas = []
