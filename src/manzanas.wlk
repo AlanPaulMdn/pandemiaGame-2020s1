@@ -2,6 +2,8 @@ import personas.*
 import simulacion.*
 import wollok.game.*
 
+// ACA ESTUVO FLOR
+
 class Manzana {
 	const property personas = []
 	var property position
