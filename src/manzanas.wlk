@@ -2,17 +2,22 @@ import personas.*
 import simulacion.*
 import wollok.game.*
 
-// ACA ESTUVO ALAN
-
 class Manzana {
 	const property personas = []
 	var property position
 	
 	method image() {
-		// reeemplazarlo por los distintos colores de acuerdo a la cantidad de infectados
-		// también vale reemplazar estos dibujos horribles por otros más lindos
-		return "blanco.png"
+		if (personas.all({p => p.estaInfectada()}))
+			{return "rojo.png"}
+		else if (self.infectades().size().between(8,personas.size()-1))
+			{return "naranjaOscuro.png"}
+		else if (self.infectades().size().between(4,7))
+			{return "naranja.png"}
+		else if (self.infectades().size().between(1,3))
+			{return "amarillo.png"}
+		else {return "blanco.png"}
 	}
+	
 	
 	// este les va a servir para el movimiento
 	method esManzanaVecina(manzana) {
@@ -26,7 +31,12 @@ class Manzana {
 	}
 	
 	method personaSeMudaA(persona, manzanaDestino) {
-		// implementar
+		personas.remove(persona)
+		manzanaDestino.ingresarPersona(persona)
+	}
+	
+	method ingresarPersona(persona){
+		personas.add(persona)
 	}
 	
 	method cantidadContagiadores() {
@@ -38,6 +48,13 @@ class Manzana {
 		return personas.filter({ pers => not pers.estaInfectada() })
 	} 	
 	
+	method infectades() {
+		return personas.asSet().difference(self.noInfectades().asSet())
+	}
+	
+	method conSintomas()=
+		personas.filter({ pers => pers.presentaSintomas() })
+		
 	method simulacionContagiosDiarios() { 
 		const cantidadContagiadores = self.cantidadContagiadores()
 		if (cantidadContagiadores > 0) {
@@ -57,4 +74,6 @@ class Manzana {
 			self.personaSeMudaA(viajero, destino)			
 		}
 	}
+	
+
 }

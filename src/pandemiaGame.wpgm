@@ -9,6 +9,10 @@ object pandemiaGameConfig {
 	method configureGame() {
 		self.configureGameParameters()
 		self.agregarManzanas()
+		keyboard.num1().onPressDo { game.say(game.origin(), simulacion.estadoGeneral() ) }
+		keyboard.x().onPressDo {simulacion.sumarInfectade() }
+		keyboard.d().onPressDo {}
+		
 		// agregar las teclas de acciones
 		// después, al agente de salud y sus teclas de acciones y movimiento
 	}

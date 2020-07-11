@@ -9,5 +9,9 @@ class Persona {
 	method infectarse() {
 		// implementar 
 	}
+	
+	// method diaInfeccion()
+	// method presentaSintomas()
+	// method respetaCuarentena()
 }
 

@@ -26,6 +26,7 @@ object simulacion {
 			self.chanceDeContagioConCuarentena() 
 			else 
 			self.chanceDeContagioSinCuarentena()
+			
 		return (1..cantidadContagiadores).any({n => self.tomarChance(chanceDeContagio) })	
 	}
 
@@ -33,5 +34,24 @@ object simulacion {
 		const nuevaManzana = new Manzana()
 		// agregar la cantidad de personas segun self.personasPorManzana()
 		return nuevaManzana
+	}
+	
+	method sumarInfectade() {}
+	
+	method pasarDia(){
+		diaActual += 1
+		// movimiento, contagio y curacion
+		console.prinln("terminó el día") 
+	}
+	method totalPersonas()=
+		manzanas.sum({m => m.personas().size()})
+	method totalInfectades()=
+		manzanas.sum({m => m.infectades().size()})
+	method totalConSintomas()=
+		manzanas.sum({m => m.conSintomas().size()})
+	
+	method estadoGeneral(){
+		return "Día" + diaActual + ", total de personas: "+ self.totalPersonas() +
+		 ", infectados: " + self.totalInfectades() + ", con síntomas: "+ self.totalConSintomas()
 	}
 }
