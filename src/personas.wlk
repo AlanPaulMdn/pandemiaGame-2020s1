@@ -2,14 +2,15 @@ import simulacion.*
 
 class Persona {
 	var property estaAislada = false
-	
 	var property respetaCuarentena = false
-	var property diaInfeccion = 0
+	
+	var diaInfeccion = 0
 	var estaInfectada = false
 	var tieneSintomas = false
 	
 	method estaInfectada(){
-		if (estaInfectada and simulacion.diaActual() > diaInfeccion+20 )
+		if (	estaInfectada and 
+			simulacion.diaActual() > diaInfeccion+simulacion.duracionInfeccion()	)
 		{ estaInfectada = false	}
 		return estaInfectada
 	}
@@ -21,13 +22,12 @@ class Persona {
 	
 	method presentaSintomas(){
 		if (self.estaInfectada() and not tieneSintomas) {
-			if (simulacion.tomarChance(simulacion.chanceDePresentarSintomas())) {
-				tieneSintomas = true }
-		}
+				tieneSintomas = simulacion.tomarChance(simulacion.chanceDePresentarSintomas()) }
 		else if (not self.estaInfectada()){
 			tieneSintomas = false
 		}
 		return tieneSintomas
 	}
 }
+
 

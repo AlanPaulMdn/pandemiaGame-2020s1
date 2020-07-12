@@ -6,17 +6,12 @@ class Manzana {
 	const property personas = []
 	var property position
 	
-	method image() {
-		if (personas.all({p => p.estaInfectada()}))
-			{return "rojo.png"}
-		else if (self.infectades().size().between(8,personas.size()-1))
-			{return "naranjaOscuro.png"}
-		else if (self.infectades().size().between(4,7))
-			{return "naranja.png"}
-		else if (self.infectades().size().between(1,3))
-			{return "amarillo.png"}
-		else {return "blanco.png"}
-	}
+	method image()=
+		if (personas.all({p => p.estaInfectada()}))							"rojo.png"
+		else if (self.infectades().size().between(8,personas.size()-1))		"naranjaOscuro.png"
+		else if (self.infectades().size().between(4,7))						"naranja.png"
+		else if (self.infectades().size().between(1,3))						"amarillo.png"
+		else 																"blanco.png"
 	
 	
 	// este les va a servir para el movimiento
@@ -45,16 +40,17 @@ class Manzana {
 	method aisladas()=
 		personas.filter({pers => pers.estaAislada()}).asSet()
 	
-	method noInfectades() {
-		return personas.filter({ pers => not pers.estaInfectada() }).asSet()
-	} 	
+	method noInfectades()=
+		personas.filter({ pers => not pers.estaInfectada() }).asSet() 	
 	
-	method infectades() {
-		return personas.asSet().difference(self.noInfectades())
-	}
+	method infectades()=
+	 	personas.asSet().difference(self.noInfectades())
 	
 	method conSintomas()=
 		personas.filter({ pers => pers.presentaSintomas() })
+	
+	method conSintomasNoAislades()=
+		self.conSintomas().asSet().difference(self.aisladas())
 
 
 	method simulacionContagiosDiarios() { 
@@ -68,7 +64,7 @@ class Manzana {
 		}
 	}
 	
-	method transladoDeUnHabitante() { //chequearlo
+	method transladoDeUnHabitante() {
 		const quienesSePuedenMudar = personas.filter({ pers => not pers.estaAislada() })
 		if (quienesSePuedenMudar.size() > 2) {
 			const viajero = quienesSePuedenMudar.anyOne()
@@ -77,5 +73,11 @@ class Manzana {
 		}
 	}
 	
-
+	method todesRespetanCuarentena(){
+		personas.forEach({p => p.respetaCuarentena(true)})
+	}
+	
+	method aislar(grupoDePersonas)= 
+		grupoDePersonas.forEach({ p => p.estaAislada(true)})
+		
 }

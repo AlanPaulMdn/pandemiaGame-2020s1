@@ -36,9 +36,8 @@ object simulacion {
 
 	method crearManzana() {
 		const nuevaManzana = new Manzana()
-		(1..self.personasPorManzana()).forEach({ num =>
-			nuevaManzana.ingresarPersona(new Persona())
-		})
+		(1..self.personasPorManzana()).forEach({ cant =>
+			nuevaManzana.ingresarPersona(new Persona())	})
 		return nuevaManzana
 	}
 	
@@ -49,6 +48,7 @@ object simulacion {
 		manzanas.forEach({m=> m.pasarUnDia()})
 		console.println("terminó el día")
 	}
+	
 	method totalPersonas()=
 		manzanas.sum({m => m.personas().size()})
 	method totalInfectades()=

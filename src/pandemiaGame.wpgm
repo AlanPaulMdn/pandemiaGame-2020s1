@@ -1,5 +1,6 @@
 import wollok.game.*
 import simulacion.*
+import agente.*
 
 object pandemiaGameConfig {
 	method height() = 1
@@ -9,12 +10,25 @@ object pandemiaGameConfig {
 	method configureGame() {
 		self.configureGameParameters()
 		self.agregarManzanas()
-		keyboard.num1().onPressDo { console.println(simulacion.estadoGeneral())  }
+
+		
+		//Acciones
+		keyboard.e().onPressDo { game.say(agente , simulacion.estadoGeneral() )}
 		keyboard.x().onPressDo {simulacion.sumarInfectade() }
 		keyboard.d().onPressDo {simulacion.pasarDia()}
+
+		//keyboard.i().onPressDo{simulacion.agregarPersonaAUnaManzanaAlAzar()}
 		
-		// agregar las teclas de acciones
-		// después, al agente de salud y sus teclas de acciones y movimiento
+		// Agente, acciones y movimiento
+		game.addVisual(agente)
+		
+		keyboard.r().onPressDo{agente.respetarCuarentena()} //de manzana actual
+		keyboard.a().onPressDo{agente.aislarInfectades()} //en manzana actual
+		
+		keyboard.right().onPressDo{agente.moveRight()}
+		keyboard.left().onPressDo{agente.moveLeft()}	
+		keyboard.up().onPressDo{agente.moveUp()}
+		keyboard.down().onPressDo{agente.moveDown()}
 	}
 		
 	method configureGameParameters() {
