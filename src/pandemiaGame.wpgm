@@ -7,7 +7,7 @@ object pandemiaGameConfig {
 	var agentePuesto= false
 	
 	method height() = 4
-	method width() = 7
+	method width() = 6
 	method title() = "Simuléichon"
 	
 	method configureGame() {

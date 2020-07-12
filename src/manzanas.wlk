@@ -5,17 +5,8 @@ import wollok.game.*
 class Manzana {
 	const property personas = []
 	var property position
-	//var property cantInfectades = self.infectades().size()
 	
 	method image()=
-	/* 	NO ANDA ASI
-		if (cantInfectades == personas.size())							"rojo.png"
-		else if (cantInfectades.between(8,personas.size()-1))			"naranjaOscuro.png"
-		else if (cantInfectades.between(4,7))							"naranja.png"
-		else if (cantInfectades.between(1,3))							"amarillo.png"
-		else 															"blanco.png"
-	
-	*/ 
 		if (self.cantidadInfectades() == self.totalPersonas())							"rojo.png"
 		else if (self.cantidadInfectades().between(8,self.totalPersonas()-1))			"naranjaOscuro.png"
 		else if (self.cantidadInfectades().between(4,7))								"naranja.png"
@@ -41,7 +32,7 @@ class Manzana {
 		personas.add(persona)
 	}
 	
-	method cantidadContagiadores()= 
+	method cantidadContagiadores()= //infectadas no aisladas
 		self.infectades().difference(self.aisladas()).size()
 	
 	method totalPersonas()=
@@ -69,18 +60,18 @@ class Manzana {
 		self.conSintomas().asSet().difference(self.aisladas())
 	
 	method situacionInfectades(){
-		return "Cantidad de infectades en manzana actual " + self.infectades().size()
+		return "Cantidad de total: "+ self.totalPersonas() +", infectades: " + self.infectades().size() + ", con sintomas: " + self.cantidadConSintomas() +
+		", contagiadores: " + self.cantidadContagiadores() + ", aisladas: " + self.aisladas().size()
 	}
 
 	method simulacionContagiosDiarios() { 
 		const cantidadContagiadores = self.cantidadContagiadores() 
 		if (cantidadContagiadores > 0) {
-			self.noInfectades().forEach({ persona => 
-				(1..cantidadContagiadores).forEach({ 
+			self.noInfectades().asList().forEach({ persona => 
+				(1..cantidadContagiadores).forEach({ cant =>
 					if (simulacion.debeInfectarsePersona(persona, cantidadContagiadores))
 						{	persona.infectarse() } 
 				})
-				
 			})
 		}
 	}

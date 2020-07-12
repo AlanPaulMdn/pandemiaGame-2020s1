@@ -8,12 +8,14 @@ class Persona {
 	var property estaInfectada = false
 	var tieneSintomas = false
 	
+	/*
 	method estaInfectada(){
-		/*if (	estaInfectada and 
+		if (	estaInfectada and 
 			simulacion.diaActual() > diaInfeccion+simulacion.duracionInfeccion()	)
-		{ estaInfectada = false	} */
+		{ estaInfectada = false	}
 		return estaInfectada
 	}
+	*/
 	
 	method infectarse() {
 		estaInfectada = true

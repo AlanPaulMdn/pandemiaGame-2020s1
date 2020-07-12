@@ -26,7 +26,7 @@ object simulacion {
 
 	method crearManzana() {
 		const nuevaManzana = new Manzana()
-		(1..self.personasPorManzana()-5).forEach({ cant => ///////////////////////////////////////////SACAR EL -5
+		(1..self.personasPorManzana()).forEach({ cant =>
 			nuevaManzana.ingresarPersona(new Persona())	})
 		return nuevaManzana
 	}
