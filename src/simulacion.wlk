@@ -44,6 +44,7 @@ object simulacion {
 	method sumarInfectade() {
 		if (not manzanas.isEmpty()) {
 			self.manzanaAzarosa().ingresarPersona(new Infectade())
+			console.println("Se sumó un infectade")
 		}
 		else
 			{console.println("No hay manzanas en el pueblo")}

@@ -7,7 +7,7 @@ object agente {
 	var property position = game.origin()
 	method image()= "ambulancia.png"
 	
-	/*
+	/*  BORRAR
 	method respetarCuarentena(persona){
 		persona.respetarCuarentena()
 	}

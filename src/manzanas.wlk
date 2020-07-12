@@ -5,16 +5,22 @@ import wollok.game.*
 class Manzana {
 	const property personas = []
 	var property position
-	const cantInfectades = self.infectades().size()
+	//var property cantInfectades = self.infectades().size()
 	
 	method image()=
-		
+	/* 	NO ANDA ASI
 		if (cantInfectades == personas.size())							"rojo.png"
 		else if (cantInfectades.between(8,personas.size()-1))			"naranjaOscuro.png"
 		else if (cantInfectades.between(4,7))							"naranja.png"
 		else if (cantInfectades.between(1,3))							"amarillo.png"
 		else 															"blanco.png"
 	
+	*/ 
+		if (personas.all({p => p.estaInfectada()}))							"rojo.png"
+		else if (self.infectades().size().between(8,personas.size()-1))		"naranjaOscuro.png"
+		else if (self.infectades().size().between(4,7))						"naranja.png"
+		else if (self.infectades().size().between(1,3))						"amarillo.png"
+		else 																"blanco.png"
 	
 	method esManzanaVecina(manzana) {
 		return manzana.position().distance(position) == 1
