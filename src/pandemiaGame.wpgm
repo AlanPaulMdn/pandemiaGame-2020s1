@@ -20,10 +20,10 @@ object pandemiaGameConfig {
 		
 		// Agente, acciones y movimiento
 		
-		//game.addVisual(agente) TIRA ERRRRRORRRRR PORQUEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE!!!!
+		game.addVisual(agente)// TIRA ERRRRRORRRRR PORQUEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE!!!!
 		
-		keyboard.r().onPressDo{agente.respetarCuarentena()} //de manzana actual
-		keyboard.a().onPressDo{agente.aislarInfectades()} //en manzana actual
+		keyboard.r().onPressDo{agente.respetarCuarentena(game.colliders(agente))} //de manzana actual
+		keyboard.a().onPressDo{agente.aislarInfectades(game.colliders(agente))} //en manzana actual
 		
 		keyboard.right().onPressDo{agente.moveRight()}
 		keyboard.left().onPressDo{agente.moveLeft()}	
@@ -49,6 +49,7 @@ object pandemiaGameConfig {
 	}
 	
 }
+
 
 program pandemiaGame {
 	pandemiaGameConfig.configureGame()
