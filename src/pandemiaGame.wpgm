@@ -3,8 +3,8 @@ import simulacion.*
 import agente.*
 
 object pandemiaGameConfig {
-	method height() = 1
-	method width() = 1
+	method height() = 4
+	method width() = 6
 	method title() = "Simuléichon"
 	
 	method configureGame() {
@@ -20,7 +20,7 @@ object pandemiaGameConfig {
 		//keyboard.i().onPressDo{simulacion.agregarPersonaAUnaManzanaAlAzar()}
 		
 		// Agente, acciones y movimiento
-		game.addVisual(agente)
+		//game.addVisual(agente)
 		
 		keyboard.r().onPressDo{agente.respetarCuarentena()} //de manzana actual
 		keyboard.a().onPressDo{agente.aislarInfectades()} //en manzana actual

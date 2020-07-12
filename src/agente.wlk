@@ -6,18 +6,16 @@ import personas.*
 
 object agente {
 	var property position = game.at(0,0)
-	var property image = "ambulancia.png"
 	const manzanaActual = game.colliders(self)
 	
+	method image()= "ambulancia.png"
 	method respetarCuarentena(persona){
 		persona.respetarCuarentena()
 	}
 	
 	method aislarInfectades(){ // Se aislan todes che! que tamos desbordades...
 		const infectades = manzanaActual.conSintomasNoAislades() 
-		if ( infectades.size()> 0 ){
-			manzanaActual.aislar(infectades)
-		}
+		if ( infectades.size()> 0 ){	manzanaActual.aislar(infectades)	}
 	}
 	
 	method respetarCuarentena(){ //Todes a respetar la cuarentena! vamos... rápido
