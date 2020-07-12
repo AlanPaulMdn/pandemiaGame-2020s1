@@ -22,8 +22,20 @@ object agente {
 		manzanaActual.todesRespetanCuarentena() 
 	}
 	
-	method moveRight(){ self.position(self.position().right(1))  }
-	method moveLeft(){ self.position(self.position().left(1)) }
-	method moveUp(){ self.position(self.position().up(1)) }
-	method moveDown(){ self.position(self.position().down(1)) }
+	method moveRight(x){ 
+		if (self.position().x() < x-1 ){
+		self.position(self.position().right(1)) }
+	}
+	method moveLeft(){ 
+		if (self.position().x() > 0 ){
+		self.position(self.position().left(1))}
+	}
+	method moveUp(y){
+		if (self.position().y() < y-1 ){
+		self.position(self.position().up(1))}
+	}
+	method moveDown(){
+		if (self.position().y() > 0 ){
+		self.position(self.position().down(1)) }
+	}
 }
