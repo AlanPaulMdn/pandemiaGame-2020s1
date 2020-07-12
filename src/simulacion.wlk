@@ -9,7 +9,7 @@ object simulacion {
 	const property chanceDePresentarSintomas = 30
 	const property chanceDeContagioSinCuarentena = 25
 	const property chanceDeContagioConCuarentena = 2
-	const property personasPorManzana = 10
+	const property personasPorManzana = 3 ///////////////////////////////////BAJAR PARA QUE ANDE MEJOR
 	const property duracionInfeccion = 20
 	
 	method tomarChance(porcentaje) = 0.randomUpTo(100) < porcentaje
