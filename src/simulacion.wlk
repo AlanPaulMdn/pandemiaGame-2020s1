@@ -36,12 +36,21 @@ object simulacion {
 
 	method crearManzana() {
 		const nuevaManzana = new Manzana()
-		(1..self.personasPorManzana()).forEach({ cant =>
+		(1..self.personasPorManzana()-8).forEach({ cant => //SACAR EL -8
 			nuevaManzana.ingresarPersona(new Persona())	})
 		return nuevaManzana
 	}
 	
-	method sumarInfectade() {}
+	method sumarInfectade() {
+		if (not manzanas.isEmpty()) {
+			self.manzanaAzarosa().ingresarPersona(new Infectade())
+		}
+		else
+			{console.println("No hay manzanas en el pueblo")}
+	}
+	
+	method manzanaAzarosa()=
+		manzanas.get(0.randomUpTo(manzanas.size()))
 	
 	method pasarDia(){
 		diaActual += 1

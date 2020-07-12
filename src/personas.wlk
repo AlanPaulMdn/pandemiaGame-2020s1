@@ -4,8 +4,8 @@ class Persona {
 	var property estaAislada = false
 	var property respetaCuarentena = false
 	
-	var diaInfeccion = 0
-	var estaInfectada = false
+	var property diaInfeccion = 0
+	var property estaInfectada = false
 	var tieneSintomas = false
 	
 	method estaInfectada(){
@@ -30,4 +30,8 @@ class Persona {
 	}
 }
 
+class Infectade inherits Persona {
+	override method diaInfeccion()= simulacion.diaActual()
+	override method estaInfectada()= true
+}
 

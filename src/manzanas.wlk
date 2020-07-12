@@ -7,6 +7,7 @@ class Manzana {
 	var property position
 	
 	method image()=
+		// agregar un cantInfectades y cantInfectades == cantPersonas
 		if (personas.all({p => p.estaInfectada()}))							"rojo.png"
 		else if (self.infectades().size().between(8,personas.size()-1))		"naranjaOscuro.png"
 		else if (self.infectades().size().between(4,7))						"naranja.png"
@@ -14,7 +15,6 @@ class Manzana {
 		else 																"blanco.png"
 	
 	
-	// este les va a servir para el movimiento
 	method esManzanaVecina(manzana) {
 		return manzana.position().distance(position) == 1
 	}
@@ -22,7 +22,7 @@ class Manzana {
 	method pasarUnDia() {
 		self.transladoDeUnHabitante()
 		self.simulacionContagiosDiarios()
-		// despues agregar la curacion
+		// despues agregar la curacion ????????????????????????????????
 	}
 	
 	method personaSeMudaA(persona, manzanaDestino) {
@@ -62,6 +62,18 @@ class Manzana {
 				}
 			})
 		}
+		/* 
+		else if (cantidadContagiadores > 0) {
+			self.noInfectades().forEach({ persona => 
+				(1..cantidadContagiadores).forEach({ 
+					if (simulacion.debeInfectarsePersona(persona, cantidadContagiadores))
+						{	persona.infectarse() } 
+				})
+				
+			})
+		}
+		
+		*/
 	}
 	
 	method transladoDeUnHabitante() {

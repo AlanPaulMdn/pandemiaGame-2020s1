@@ -14,13 +14,13 @@ object pandemiaGameConfig {
 		
 		//Acciones
 		keyboard.e().onPressDo { game.say(agente , simulacion.estadoGeneral() )}
+		keyboard.w().onPressDo { console.println(simulacion.estadoGeneral()) } 		//otra version de e
 		keyboard.x().onPressDo {simulacion.sumarInfectade() }
 		keyboard.d().onPressDo {simulacion.pasarDia()}
-
-		//keyboard.i().onPressDo{simulacion.agregarPersonaAUnaManzanaAlAzar()}
 		
 		// Agente, acciones y movimiento
-		//game.addVisual(agente)
+		
+		//game.addVisual(agente) TIRA ERRRRRORRRRR PORQUEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE!!!!
 		
 		keyboard.r().onPressDo{agente.respetarCuarentena()} //de manzana actual
 		keyboard.a().onPressDo{agente.aislarInfectades()} //en manzana actual

@@ -5,14 +5,14 @@ import personas.*
 
 
 object agente {
-	var property position = game.at(0,0)
+	var property position = game.origin()
 	const manzanaActual = game.colliders(self)
 	
 	method image()= "ambulancia.png"
 	method respetarCuarentena(persona){
 		persona.respetarCuarentena()
 	}
-	
+
 	method aislarInfectades(){ // Se aislan todes che! que tamos desbordades...
 		const infectades = manzanaActual.conSintomasNoAislades() 
 		if ( infectades.size()> 0 ){	manzanaActual.aislar(infectades)	}
