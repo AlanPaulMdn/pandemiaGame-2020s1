@@ -16,11 +16,11 @@ class Manzana {
 		else 															"blanco.png"
 	
 	*/ 
-		if (personas.all({p => p.estaInfectada()}))							"rojo.png"
-		else if (self.infectades().size().between(8,personas.size()-1))		"naranjaOscuro.png"
-		else if (self.infectades().size().between(4,7))						"naranja.png"
-		else if (self.infectades().size().between(1,3))						"amarillo.png"
-		else 																"blanco.png"
+		if (self.cantidadInfectades() == self.totalPersonas())							"rojo.png"
+		else if (self.cantidadInfectades().between(8,self.totalPersonas()-1))			"naranjaOscuro.png"
+		else if (self.cantidadInfectades().between(4,7))								"naranja.png"
+		else if (self.cantidadInfectades().between(1,3))								"amarillo.png"
+		else 																			"blanco.png"
 	
 	method esManzanaVecina(manzana) {
 		return manzana.position().distance(position) == 1
@@ -29,7 +29,7 @@ class Manzana {
 	method pasarUnDia() {
 		self.transladoDeUnHabitante()
 		self.simulacionContagiosDiarios()
-		// despues agregar la curacion ????????????????????????????????
+		self.curacion()
 	}
 	
 	method personaSeMudaA(persona, manzanaDestino) {
@@ -44,6 +44,15 @@ class Manzana {
 	method cantidadContagiadores()= 
 		self.infectades().difference(self.aisladas()).size()
 	
+	method totalPersonas()=
+		personas.size()
+	
+	method cantidadInfectades()=
+		self.infectades().size()
+	
+	method cantidadConSintomas()=
+		self.conSintomas().size()
+		
 	method aisladas()=
 		personas.filter({pers => pers.estaAislada()}).asSet()
 	
@@ -58,19 +67,14 @@ class Manzana {
 	
 	method conSintomasNoAislades()=
 		self.conSintomas().asSet().difference(self.aisladas())
-
+	
+	method situacionInfectades(){
+		return "Cantidad de infectades en manzana actual " + self.infectades().size()
+	}
 
 	method simulacionContagiosDiarios() { 
-		const cantidadContagiadores = self.cantidadContagiadores()
+		const cantidadContagiadores = self.cantidadContagiadores() 
 		if (cantidadContagiadores > 0) {
-			self.noInfectades().forEach({ persona => 
-				if (simulacion.debeInfectarsePersona(persona, cantidadContagiadores)) {
-					persona.infectarse()
-				}
-			})
-		}
-		/* 
-		else if (cantidadContagiadores > 0) {
 			self.noInfectades().forEach({ persona => 
 				(1..cantidadContagiadores).forEach({ 
 					if (simulacion.debeInfectarsePersona(persona, cantidadContagiadores))
@@ -79,8 +83,6 @@ class Manzana {
 				
 			})
 		}
-		
-		*/
 	}
 	
 	method transladoDeUnHabitante() {
@@ -98,5 +100,9 @@ class Manzana {
 	
 	method aislar(grupoDePersonas)= 
 		grupoDePersonas.forEach({ p => p.estaAislada(true)})
+	
+	method curacion(){
+		self.infectades().forEach({i => i.curarse()})
+	}
 		
 }

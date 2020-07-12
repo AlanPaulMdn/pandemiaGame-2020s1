@@ -7,11 +7,6 @@ object agente {
 	var property position = game.origin()
 	method image()= "ambulancia.png"
 	
-	/*  BORRAR
-	method respetarCuarentena(persona){
-		persona.respetarCuarentena()
-	}
-	*/
 	
 	method aislarInfectades(manzanaActual){ // Se aislan todes che! que tamos desbordades...
 		const infectades = manzanaActual.conSintomasNoAislades() 

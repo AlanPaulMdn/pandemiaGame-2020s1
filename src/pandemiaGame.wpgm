@@ -4,6 +4,8 @@ import agente.*
 import manzanas.*
 
 object pandemiaGameConfig {
+	var agentePuesto= false
+	
 	method height() = 4
 	method width() = 7
 	method title() = "Simuléichon"
@@ -14,26 +16,24 @@ object pandemiaGameConfig {
 
 		
 		//Acciones
-		keyboard.w().onPressDo { console.println(simulacion.estadoGeneral()) } 		//otra version de e
+		keyboard.w().onPressDo { console.println(simulacion.estadoGeneral()) }
 		keyboard.x().onPressDo {simulacion.sumarInfectade() }
 		keyboard.d().onPressDo {simulacion.pasarDia()}
-		keyboard.i().onPressDo{ console.println( game.colliders(agente).cantInfectades()) }
 		
 		// Agente, acciones y movimiento
 		
-		
-		
 		keyboard.s().onPressDo{
-			var agentePuesto= false
 			if (not agentePuesto){
 			game.addVisual(agente)
 			agentePuesto= true}
 			else {}
 		}
 		
-		keyboard.r().onPressDo{agente.respetarCuarentena(game.colliders(agente))} //de manzana actual
-		keyboard.a().onPressDo{agente.aislarInfectades(game.colliders(agente))} //en manzana actual
 		
+		keyboard.i().onPressDo{	console.println( game.colliders(agente).first().situacionInfectades())}
+		
+		keyboard.r().onPressDo{agente.respetarCuarentena(game.colliders(agente).first())} //de manzana actual
+		keyboard.a().onPressDo{agente.aislarInfectades(game.colliders(agente).first())} //en manzana actual
 		keyboard.e().onPressDo { game.say(agente , simulacion.estadoGeneral() )}
 		
 		

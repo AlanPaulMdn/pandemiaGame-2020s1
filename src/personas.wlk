@@ -9,9 +9,9 @@ class Persona {
 	var tieneSintomas = false
 	
 	method estaInfectada(){
-		if (	estaInfectada and 
+		/*if (	estaInfectada and 
 			simulacion.diaActual() > diaInfeccion+simulacion.duracionInfeccion()	)
-		{ estaInfectada = false	}
+		{ estaInfectada = false	} */
 		return estaInfectada
 	}
 	
@@ -27,6 +27,15 @@ class Persona {
 			tieneSintomas = false
 		}
 		return tieneSintomas
+	}
+	
+	method curarse(){
+		if (self.estaInfectada()){
+			if(simulacion.diaActual() > diaInfeccion + simulacion.duracionInfeccion()){
+				 estaInfectada = false
+				 diaInfeccion = 0
+			}
+		}
 	}
 }
 

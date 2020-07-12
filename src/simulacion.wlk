@@ -6,21 +6,11 @@ object simulacion {
 	var property diaActual = 0
 	const property manzanas = []
 
-	// parametros del juego
 	const property chanceDePresentarSintomas = 30
-	
 	const property chanceDeContagioSinCuarentena = 25
 	const property chanceDeContagioConCuarentena = 2
-	
-	
 	const property personasPorManzana = 10
 	const property duracionInfeccion = 20
-
-	/*
-	 * este sirve para generar un azar
-	 * p.ej. si quiero que algo pase con 30% de probabilidad pongo
-	 * if (simulacion.tomarChance(30)) { ... } 
-	 */
 	
 	method tomarChance(porcentaje) = 0.randomUpTo(100) < porcentaje
 
@@ -36,7 +26,7 @@ object simulacion {
 
 	method crearManzana() {
 		const nuevaManzana = new Manzana()
-		(1..self.personasPorManzana()-8).forEach({ cant => //SACAR EL -8
+		(1..self.personasPorManzana()-5).forEach({ cant => ///////////////////////////////////////////SACAR EL -5
 			nuevaManzana.ingresarPersona(new Persona())	})
 		return nuevaManzana
 	}
@@ -60,11 +50,11 @@ object simulacion {
 	}
 	
 	method totalPersonas()=
-		manzanas.sum({m => m.personas().size()})
+		manzanas.sum({m => m.totalPersonas()})
 	method totalInfectades()=
-		manzanas.sum({m => m.infectades().size()})
+		manzanas.sum({m => m.cantidadInfectades()})
 	method totalConSintomas()=
-		manzanas.sum({m => m.conSintomas().size()})
+		manzanas.sum({m => m.cantidadConSintomas()})
 	
 	method estadoGeneral(){
 		return "Día " + diaActual + ", total de personas: "+ self.totalPersonas() +
