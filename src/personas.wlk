@@ -1,5 +1,5 @@
 import simulacion.*
-
+//ok
 class Persona {
 	var property estaAislada = false
 	var property respetaCuarentena = false

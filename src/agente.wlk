@@ -2,7 +2,7 @@ import wollok.game.*
 import simulacion.*
 import manzanas.*
 import personas.*
-
+//ok
 object agente {
 	var property position = game.origin()
 	method image()= "ambulancia.png"

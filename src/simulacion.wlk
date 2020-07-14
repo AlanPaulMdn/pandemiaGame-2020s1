@@ -1,7 +1,7 @@
 import personas.*
 import manzanas.*
 import wollok.game.*
-
+//ok
 object simulacion {
 	var property diaActual = 0
 	const property manzanas = []

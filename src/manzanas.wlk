@@ -1,7 +1,7 @@
 import personas.*
 import simulacion.*
 import wollok.game.*
-
+//ok
 class Manzana {
 	const property personas = []
 	var property position

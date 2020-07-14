@@ -2,7 +2,7 @@ import personas.*
 import manzanas.*
 import wollok.game.*
 import simulacion.*
-
+//ok
 test "testPandemiaGame" {
 	/* test personas */
      const persona1 = new Persona()
