@@ -9,7 +9,7 @@ object simulacion {
 	const property chanceDePresentarSintomas = 30
 	const property chanceDeContagioSinCuarentena = 25
 	const property chanceDeContagioConCuarentena = 2
-	const property personasPorManzana = 3 ///////////////////////////////////BAJAR PARA QUE ANDE MEJOR
+	const property personasPorManzana = 10
 	const property duracionInfeccion = 20
 	
 	method tomarChance(porcentaje) = 0.randomUpTo(100) < porcentaje
@@ -44,9 +44,9 @@ object simulacion {
 		manzanas.get(0.randomUpTo(manzanas.size()))
 	
 	method pasarDia(){
+		console.println("terminó el día " + diaActual)
 		diaActual += 1 
 		manzanas.forEach({m=> m.pasarUnDia()}) 
-		console.println("terminó el día")
 	}
 	
 	method totalPersonas()=
