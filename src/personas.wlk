@@ -18,18 +18,12 @@ class Persona {
 	*/
 	
 	method infectarse() {
-		estaInfectada = true
-		diaInfeccion = simulacion.diaActual()
-		presentaSintomas = simulacion.tomarChance(simulacion.chanceDePresentarSintomas())
+		if (not estaInfectada) { 
+			estaInfectada = true 
+			diaInfeccion = simulacion.diaActual()
+			presentaSintomas = simulacion.tomarChance(simulacion.chanceDePresentarSintomas())
+		}
 	}
-	
-	
-	/*method presentaSintomas(){
-		if (self.estaInfectada() and not tieneSintomas) {
-				tieneSintomas = simulacion.tomarChance(simulacion.chanceDePresentarSintomas()) }
-	return tieneSintomas
-	}*/
-	
 	
 	method curarse(){
 		if (self.estaInfectada()){

@@ -85,16 +85,6 @@ test "testPandemiaGame" {
  	simulacion.pasarDia()simulacion.pasarDia() 
  	simulacion.pasarDia()simulacion.pasarDia()
  	
- 	 assert.equals(1,manzana00.cantidadInfectades()) 
-     
- 	 
- 	/*assert.equals(6,simulacion.manzanas().size())
- 	
- 	
- 	assert.equals(23,simulacion.diaActual())
- 	assert.equals(8,simulacion.totalPersonas())
- 	assert.equals(0,simulacion.totalInfectades()) */
- 	
- 	
+ 	 assert.equals(0,manzana00.cantidadInfectades())  	
  	
 }
