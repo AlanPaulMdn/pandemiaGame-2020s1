@@ -1,0 +1,100 @@
+import personas.*
+import manzanas.*
+import wollok.game.*
+import simulacion.*
+
+test "testPandemiaGame" {
+	/* test personas */
+     const persona1 = new Persona()
+     /*ninguna infectada, ninguna aislada, ninguna hace cuarentena. */
+     assert.notThat(persona1.estaInfectada()) 
+     assert.notThat(persona1.estaAislada())
+     assert.notThat(persona1.respetaCuarentena())
+     assert.notThat(persona1.presentaSintomas())
+     
+     persona1.infectarse()
+     assert.that(persona1.estaInfectada()) 
+     assert.equals(0,persona1.diaInfeccion())
+    /* presentaSintomas es aleatorio */
+     
+    /*Test Manzana */
+    const persona2 = new Persona()
+    const persona3 = new Persona()
+    const persona4 = new Infectade()
+    const persona5 = new Persona()
+    const persona6 = new Persona()
+    
+     
+    const manzana00 = new Manzana(position = game.at (0,0))
+    const manzana01 = new Manzana(position = game.at (0,1))
+    
+    manzana00.ingresarPersona(persona2)
+    manzana00.ingresarPersona(persona3)
+    manzana00.ingresarPersona(persona4)
+    manzana01.ingresarPersona(persona5)
+    manzana01.ingresarPersona(persona6)
+    
+    
+    assert.equals(3,manzana00.totalPersonas())
+    assert.equals(1,manzana00.cantidadInfectades()) 
+    assert.equals(1,manzana00.cantidadContagiadores()) /*infectadas no aisladas */
+    assert.that(manzana00.esManzanaVecina(manzana01))
+    
+    manzana00.personaSeMudaA(persona2,manzana01)
+    assert.equals(2,manzana00.totalPersonas())
+    assert.equals(3,manzana01.totalPersonas())
+    assert.that(manzana00.cantidadConSintomas().between(0,1))
+    assert.equals(#{},manzana00.aisladas())
+    
+    
+ 	/* Test Simulacion */
+ 	const manzana02 = new Manzana(position = game.at (0,2))
+ 	const manzana10 = new Manzana(position = game.at (1,0))
+    const manzana11 = new Manzana(position = game.at (1,1))
+    const manzana12 = new Manzana(position = game.at (1,2))
+    
+    assert.equals(0,simulacion.diaActual())
+ 	simulacion.agregarManzana(manzana00)
+ 	simulacion.agregarManzana(manzana01)
+ 	simulacion.agregarManzana(manzana02)
+ 	simulacion.agregarManzana(manzana10)
+ 	simulacion.agregarManzana(manzana11)
+ 	simulacion.agregarManzana(manzana12)
+ 	
+ 	simulacion.sumarInfectade()
+ 	simulacion.sumarInfectade()
+ 	simulacion.sumarInfectade()
+ 	/* 3 + 1 infectado agregado anterior */
+ 	assert.equals(4,simulacion.totalInfectades())
+ 	simulacion.pasarDia()
+ 	assert.equals(8,simulacion.totalPersonas())
+ 	assert.that(simulacion.totalInfectades().between(4,8))
+ 	assert.equals(1,simulacion.diaActual())
+ 	
+ 	
+ 	/*paso de 20 dias no hay infectados */
+ 	simulacion.pasarDia()simulacion.pasarDia()
+ 	simulacion.pasarDia()simulacion.pasarDia()
+ 	simulacion.pasarDia()simulacion.pasarDia()
+ 	simulacion.pasarDia()simulacion.pasarDia()
+ 	simulacion.pasarDia()simulacion.pasarDia()
+ 	simulacion.pasarDia()simulacion.pasarDia()
+ 	simulacion.pasarDia()simulacion.pasarDia()
+ 	simulacion.pasarDia()simulacion.pasarDia()
+ 	simulacion.pasarDia()simulacion.pasarDia()
+ 	simulacion.pasarDia()simulacion.pasarDia() 
+ 	simulacion.pasarDia()simulacion.pasarDia()
+ 	
+ 	 assert.equals(1,manzana00.cantidadInfectades()) 
+     
+ 	 
+ 	/*assert.equals(6,simulacion.manzanas().size())
+ 	
+ 	
+ 	assert.equals(23,simulacion.diaActual())
+ 	assert.equals(8,simulacion.totalPersonas())
+ 	assert.equals(0,simulacion.totalInfectades()) */
+ 	
+ 	
+ 	
+}

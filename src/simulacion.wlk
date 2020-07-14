@@ -33,7 +33,7 @@ object simulacion {
 	
 	method sumarInfectade() {
 		if (not manzanas.isEmpty()) {
-			self.manzanaAzarosa().ingresarPersona(new Infectade())
+			self.manzanaAzarosa().ingresarPersona(new Infectade()) 
 			console.println("Se sumó un infectade")
 		}
 		else
@@ -44,8 +44,8 @@ object simulacion {
 		manzanas.get(0.randomUpTo(manzanas.size()))
 	
 	method pasarDia(){
-		diaActual += 1
-		manzanas.forEach({m=> m.pasarUnDia()})
+		diaActual += 1 
+		manzanas.forEach({m=> m.pasarUnDia()}) 
 		console.println("terminó el día")
 	}
 	

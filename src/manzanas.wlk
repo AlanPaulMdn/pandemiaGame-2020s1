@@ -93,7 +93,7 @@ class Manzana {
 		grupoDePersonas.forEach({ p => p.estaAislada(true)})
 	
 	method curacion(){
-		self.infectades().forEach({i => i.curarse()})
+		self.infectades().asList().forEach({i => i.curarse()})
 	}
 		
 }
